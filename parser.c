@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 16:12:30 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/12 16:40:07 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/12 17:38:02 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	parser(int argc, char **argv)
                         return (-1);
                 }
                 ft_printf_decimal(num);
+		write(1,"\n",1);
                 index++;
         }
 	return (0);
