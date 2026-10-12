@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/04 14:32:33 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/12 16:47:46 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,19 @@
 #define MAX_SIZE 100
 #endif
 
+#include <stdlib.h>
+#include <unistd.h>
 typedef struct list
 {
         int     top;
         int     arr[MAX_SIZE];
 }Stack;
+
+int	ft_atoi(const char *nptr, int *error);
+int	ft_isdigit(int c);
+int	ft_printf_str(char *str);
+int	ft_printf_decimal(int num);
+int	parser(int argc, char **argv);
+char	*ft_itoa(int n);
 
 #endif
