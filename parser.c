@@ -6,11 +6,31 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 16:12:30 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/12 18:29:36 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/14 11:03:30 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	find_duplicate(int argc, char **argv)
+{
+	int	index;
+	int	index2;
+
+	index = 0;
+	while (index < argc - 1)
+	{
+		index2 = index + 1;
+		while (index2 < argc)
+		{
+			if (ft_strncmp(argv[index], argv[index2], argc - 1) == 0)
+				return (1);
+			index2++;
+		}
+		index++;
+	}
+	return (0);
+}
 
 static int	check_arg(char *arg)
 {
@@ -65,6 +85,8 @@ int	parser(int argc, char **argv)
 		num = ft_atoi(argv[index], &exit);
 		if (exit == -1)
 			return (ft_printf_str("Error: int overflow"), -1);
+		if (find_duplicate(argc, argv))
+			return (ft_printf_str("Error: duplicate detected"), -1);
 		ft_printf_decimal(num);
 		write(1, "\n", 1);
 		index++;

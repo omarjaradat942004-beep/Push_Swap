@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/12 16:47:46 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/14 10:57:04 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	ft_printf_str(char *str);
 int	ft_printf_decimal(int num);
 int	parser(int argc, char **argv);
 char	*ft_itoa(int n);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

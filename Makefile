@@ -8,7 +8,8 @@ SRCS = ft_atoi.c \
        ft_itoa.c \
        ft_printf_decimal.c \
        ft_printf_str.c \
-       parser.c 
+       parser.c \
+       ft_strncmp.c
 
 
 
