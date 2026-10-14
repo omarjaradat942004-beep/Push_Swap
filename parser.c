@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 16:12:30 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/14 11:03:30 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/14 11:28:30 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	find_invalid(int argc, char **argv, int *exit)
 		if (check_arg(argv[index]) == -1)
 		{
 			*exit = -1;
-			ft_printf_str("Error: invalid arguments");
+			ft_printf_str("Error: invalid arguments\n");
 			return (-1);
 		}
 		index++;
@@ -76,7 +76,7 @@ int	parser(int argc, char **argv)
 
 	exit = 0;
 	if (argc == 1)
-		return (ft_printf_str("No valid arguments"), 0);
+		return (ft_printf_str("No valid arguments\n"), 0);
 	if (find_invalid(argc, argv, &exit) == -1)
 		return (-1);
 	index = 1;
@@ -84,9 +84,9 @@ int	parser(int argc, char **argv)
 	{
 		num = ft_atoi(argv[index], &exit);
 		if (exit == -1)
-			return (ft_printf_str("Error: int overflow"), -1);
+			return (ft_printf_str("Error: int overflow\n"), -1);
 		if (find_duplicate(argc, argv))
-			return (ft_printf_str("Error: duplicate detected"), -1);
+			return (ft_printf_str("Error: duplicate detected\n"), -1);
 		ft_printf_decimal(num);
 		write(1, "\n", 1);
 		index++;
