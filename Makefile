@@ -9,7 +9,13 @@ SRCS = ft_atoi.c \
        ft_printf_decimal.c \
        ft_printf_str.c \
        parser.c \
-       ft_strncmp.c
+       ft_strncmp.c \
+       push_swap.c \
+       stack_push.c \
+       stack_reverse_rotate.c \
+       stack_rotate.c \
+       stack_swap.c \
+       simple.c
 
 
 

@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/14 10:57:04 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/16 21:46:21 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,50 @@
 #define PUSH_SWAP_H
 
 
-
-#ifndef MAX_SIZE
-#define MAX_SIZE 100
-#endif
-
 #include <stdlib.h>
 #include <unistd.h>
-typedef struct list
+
+typedef struct s_snode
 {
-        int     top;
-        int     arr[MAX_SIZE];
-}Stack;
+        int                             value;
+        int                             index;
+        struct s_snode  *next;
+        struct s_snode  *prev;
+}               t_snode;
 
 int	ft_atoi(const char *nptr, int *error);
 int	ft_isdigit(int c);
 int	ft_printf_str(char *str);
 int	ft_printf_decimal(int num);
-int	parser(int argc, char **argv);
+int	parser(int argc, char **argv, t_snode **stack_a);
 char	*ft_itoa(int n);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+/*-------------------Utils---------------------*/
+t_snode *new_node(int value);
+int             is_empty(t_snode **stack);
+void    push_node(t_snode **stack, t_snode *node);
+t_snode *pop_node(t_snode **stack);
+int             peak(t_snode **stack);
+/*---------------------------------------------*/
+/*-------------------Swap----------------------*/
+void    do_sa(t_snode **st_a);
+void    do_sb(t_snode **st_b);
+void    do_ss(t_snode **st_a, t_snode **st_b);
+/*---------------------------------------------*/
+/*-------------------Push----------------------*/
+void    do_pa(t_snode **st_a, t_snode **st_b);
+void    do_pb(t_snode **st_b, t_snode **st_a);
+/*---------------------------------------------*/
+/*-------------------Rotate--------------------*/
+void    do_ra(t_snode **st_a);
+void    do_rb(t_snode **st_b);
+void    do_rr(t_snode **st_a, t_snode **st_b);
+/*---------------------------------------------*/
+/*-------------------ReverseRotate-------------*/
+void    do_rra(t_snode **st_a);
+void    do_rrb(t_snode **st_b);
+void    do_rrr(t_snode **st_a, t_snode **st_b);
+/*---------------------------------------------*/
+void	insert_sort(t_snode **stack_a);
 
 #endif

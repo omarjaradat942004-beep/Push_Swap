@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 16:12:30 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/14 11:28:30 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/16 17:01:39 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	find_invalid(int argc, char **argv, int *exit)
 	return (0);
 }
 
-int	parser(int argc, char **argv)
+int	parser(int argc, char **argv, t_snode **stack_a)
 {
 	int	index;
 	int	exit;
@@ -76,20 +76,20 @@ int	parser(int argc, char **argv)
 
 	exit = 0;
 	if (argc == 1)
-		return (ft_printf_str("No valid arguments\n"), 0);
+		return (ft_printf_str("No arguments\n"), 0);
 	if (find_invalid(argc, argv, &exit) == -1)
 		return (-1);
-	index = 1;
-	while (index < argc)
+	index = argc - 1;
+	while (index > 0)
 	{
 		num = ft_atoi(argv[index], &exit);
 		if (exit == -1)
 			return (ft_printf_str("Error: int overflow\n"), -1);
 		if (find_duplicate(argc, argv))
 			return (ft_printf_str("Error: duplicate detected\n"), -1);
-		ft_printf_decimal(num);
+		push_node(stack_a, new_node(num));
 		write(1, "\n", 1);
-		index++;
+		index--;
 	}
 	return (0);
 }
