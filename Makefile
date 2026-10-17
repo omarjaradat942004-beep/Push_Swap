@@ -15,7 +15,9 @@ SRCS = ft_atoi.c \
        stack_reverse_rotate.c \
        stack_rotate.c \
        stack_swap.c \
-       simple.c
+       simple.c \
+       ft_strlen.c \
+       ft_split.c
 
 
 

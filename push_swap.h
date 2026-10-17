@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/16 21:46:21 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/17 15:17:02 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ int	ft_atoi(const char *nptr, int *error);
 int	ft_isdigit(int c);
 int	ft_printf_str(char *str);
 int	ft_printf_decimal(int num);
-int	parser(int argc, char **argv, t_snode **stack_a);
+int	parser(int argc, char **argv, t_snode **stack_a, int *flag_num);
 char	*ft_itoa(int n);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t	ft_strlen(const char *s);
+char	**ft_split(char const *s, char c);
 /*-------------------Utils---------------------*/
 t_snode *new_node(int value);
 int             is_empty(t_snode **stack);
