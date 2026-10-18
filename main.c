@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/18 13:02:06 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/18 13:43:22 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	flag_count(int argc, char **argv)
 
 		index2++;
 	}
-	if (wrong_order == 0)
+	if (wrong_order == 0 && count > 0)
 		return (-1);
 	if (bench_not_found(argv, result,count))
 		return (-1);
@@ -84,22 +84,13 @@ int main(int argc, char **argv)
 {
 	t_snode *stack_a;
 	int	counter;
-	//t_snode	*current;
+	float	disorder;
 
 	stack_a = NULL;
 	counter = flag_count(argc, argv);
 	if (counter > 2 || counter == -1)
 		return(ft_printf_str("Error(flag overload)"), -1);
-	printf("the number of flags is :%d\n",counter);
 	parser(argc, argv, &stack_a, &counter);
-	/*
-	if 
-	insert_sort(&stack_a);
-	current  = stack_a;
-	while (!is_empty(&current))
-	{
-		printf("%d\n",current->value);
-		current = current->next;
-	}
-	*/
+	disorder = compute_disorder(stack_a, argc - counter);
+	printf("disorder = %.2f",disorder);
 }

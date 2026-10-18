@@ -17,7 +17,9 @@ SRCS = ft_atoi.c \
        stack_swap.c \
        simple.c \
        ft_strlen.c \
-       ft_split.c
+       ft_split.c \
+       disorder.c
+
 
 
 

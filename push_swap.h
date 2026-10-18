@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/17 15:17:02 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/18 13:37:32 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void    do_rra(t_snode **st_a);
 void    do_rrb(t_snode **st_b);
 void    do_rrr(t_snode **st_a, t_snode **st_b);
 /*---------------------------------------------*/
+float	compute_disorder(t_snode *stack_a, int size);
 void	insert_sort(t_snode **stack_a);
 
 #endif
