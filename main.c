@@ -6,14 +6,29 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/17 16:05:03 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/18 13:02:06 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
+static int	bench_not_found(char **argv, char **result, int count)
+{
+	int	index;
 
+	index = 0;
+	if (count == 2 && (ft_strlen(argv[1]) == ft_strlen(result[4])
+                                && ft_strncmp(argv[1], result[4], ft_strlen(result[4])) == 0))
+                                index++;
+
+	if (count == 2 && (ft_strlen(argv[2]) == ft_strlen(result[4])
+                                && ft_strncmp(argv[2], result[4], ft_strlen(result[4])) == 0))
+                                index++;
+	if (count == 2 && index == 0)
+		return (1);
+	return (0);
+}
 char	**flag_split(void)
 {
 	char	*str;
@@ -44,7 +59,8 @@ static int	flag_count(int argc, char **argv)
 		index2 = 0;
 		while (index2 < 5)
 		{
-			if (ft_strncmp(argv[index],result[index2],ft_strlen(result[index2])) == 0)
+			if (ft_strlen(argv[index]) == ft_strlen(result[index2])
+                                && ft_strncmp(argv[index], result[index2], ft_strlen(result[index2])) == 0)
 				count++;
 			index2++;
 		}
@@ -55,9 +71,12 @@ static int	flag_count(int argc, char **argv)
 	{
 		if (ft_strncmp(argv[count],result[index2],ft_strlen(result[index2])) == 0)
 			wrong_order++;
+
 		index2++;
 	}
-	if (wrong_order != 1)
+	if (wrong_order == 0)
+		return (-1);
+	if (bench_not_found(argv, result,count))
 		return (-1);
 	return (count);
 }

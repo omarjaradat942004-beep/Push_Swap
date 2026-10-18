@@ -6,14 +6,14 @@
 /*   By: omajarad <omar.jaradat1@learner.42.tech>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 16:06:39 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/16 22:45:37 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/18 12:38:59 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //Simple algorithm (O(n2 ))
 #include "push_swap.h"
 
-void    insert_sort(t_snode **stack_a)
+void	insert_sort(t_snode **stack_a)
 {
 	t_snode	*temp;
 	t_snode	*stack_a_top;
