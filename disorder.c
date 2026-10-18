@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 13:05:04 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/18 14:36:08 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/18 15:25:51 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static int	*array_converter(t_snode *stack_a, int size)
 	int	*arr;
 	int	index;
 
-	index = 0;
+	node = stack_a;
 	arr = malloc(sizeof(int) * size);
-	while (index < size - 1)
+	while (node && index < size - 1)
 	{
-		node = pop_node(&stack_a);
 		arr[index] = node->value;
+		node = node->next;
 		index++;
 	}
 	return (arr);
