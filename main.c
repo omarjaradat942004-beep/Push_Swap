@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/18 13:43:22 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/18 14:57:16 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int main(int argc, char **argv)
 		return(ft_printf_str("Error(flag overload)"), -1);
 	parser(argc, argv, &stack_a, &counter);
 	disorder = compute_disorder(stack_a, argc - counter);
-	printf("disorder = %.2f",disorder);
+	printf("disorder = %.2f\n",disorder);
+
 }

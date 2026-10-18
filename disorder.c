@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 13:05:04 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/18 13:51:38 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/18 14:36:08 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,28 @@ static int	*array_converter(t_snode *stack_a, int size)
 
 float	compute_disorder(t_snode *stack_a, int size)
 {
-	//int	mistakes;
-	//int	total_pairs;
+	int	mistakes;
+	int	total_pairs;
 	int	index;
-	//int	index2;
+	int	index2;
 	int	*ptr;
 
-	//mistakes = 0;
-	//total_pairs = 0;
+	mistakes = 0;
+	total_pairs = 0;
 	index = 0;
-	//index2 = index + 1;
 	ptr = array_converter(stack_a, size);
 	while (index < size - 1)
 	{
-		printf("%d ",ptr[index]);
+		index2 = index + 1;
+		while (index2 < size - 1)
+		{
+			total_pairs++;
+			if (ptr[index] > ptr[index2])
+				mistakes++;
+			index2++;
+		}
 		index++;
 	}
 	free(ptr);
-	return (0);
+	return ((float)mistakes / total_pairs);
 }
