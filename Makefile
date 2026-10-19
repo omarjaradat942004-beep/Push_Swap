@@ -18,7 +18,10 @@ SRCS = ft_atoi.c \
        simple.c \
        ft_strlen.c \
        ft_split.c \
-       disorder.c
+       disorder.c \
+       medium.c \
+       adaptive.c \
+       ft_printf_float.c
 
 
 

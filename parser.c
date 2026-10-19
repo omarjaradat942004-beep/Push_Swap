@@ -6,11 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 16:12:30 by omajarad          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/10/18 12:35:14 by omajarad         ###   ########.fr       */
-=======
 /*   Updated: 2026/10/18 17:49:00 by yal-sale         ###   ########.fr       */
->>>>>>> 584338c (gg)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +80,8 @@ int	parser(int argc, char **argv, t_snode **stack_a, int *flag_num)
 		return (ft_printf_str("No arguments\n"), 0);
 	if (find_invalid(argc, argv, &exit, flag_num) == -1)
 		return (-1);
+	if (argc - *flag_num - 1 == 1)
+		return (0);
 	index = argc - 1;
 	while (index > *flag_num)
 	{
