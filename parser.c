@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 16:12:30 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/17 15:34:06 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/18 17:49:00 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 static int	find_duplicate(int argc, char **argv, int *flag_num)
 {
-	int	index;
-	int	index2;
+	int	inx;
+	int	inx2;
 
-	index = *flag_num + 1;
-	while (index < argc - 1)
+	inx = *flag_num + 1;
+	while (inx < argc - 1)
 	{
-		index2 = index + 1;
-		while (index2 < argc)
+		inx2 = inx + 1;
+		while (inx2 < argc)
 		{
-			if (ft_strlen(argv[index]) == ft_strlen(argv[index2])
-    				&& ft_strncmp(argv[index], argv[index2], ft_strlen(argv[index])) == 0)
+			if (ft_strlen(argv[inx]) == ft_strlen(argv[inx2])
+				&& ft_strncmp(argv[inx], argv[inx2], ft_strlen(argv[inx])) == 0)
 				return (1);
-			index2++;
+			inx2++;
 		}
-		index++;
+		inx++;
 	}
 	return (0);
 }

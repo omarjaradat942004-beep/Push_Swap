@@ -6,12 +6,13 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/10 14:51:27 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/14 15:05:48 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/18 17:49:58 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
+
 static int	get_sign(const char *nptr, int *index)
 {
 	int	sign;
