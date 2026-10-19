@@ -6,17 +6,30 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 13:05:04 by omajarad          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/10/18 15:25:51 by omajarad         ###   ########.fr       */
+=======
+/*   Updated: 2026/10/18 17:51:52 by yal-sale         ###   ########.fr       */
+>>>>>>> 584338c (gg)
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+<<<<<<< HEAD
 static int	*array_converter(t_snode *stack_a, int size)
 {
 	t_snode	*node;
 	int	*arr;
 	int	index;
+=======
+
+static int	*array_converter(t_snode *stack_a, int size)
+{
+	t_snode	*node;
+	int		*arr;
+	int		index;
+>>>>>>> 584338c (gg)
 
 	node = stack_a;
 	arr = malloc(sizeof(int) * size);
