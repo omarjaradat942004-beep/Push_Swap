@@ -80,6 +80,8 @@ int	parser(int argc, char **argv, t_snode **stack_a, int *flag_num)
 		return (ft_printf_str("No arguments\n"), 0);
 	if (find_invalid(argc, argv, &exit, flag_num) == -1)
 		return (-1);
+	if (argc - *flag_num - 1 == 1)
+		return (0);
 	index = argc - 1;
 	while (index > *flag_num)
 	{

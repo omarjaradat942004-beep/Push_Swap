@@ -6,12 +6,11 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 13:05:04 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/18 17:51:52 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/20 13:44:19 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static int	*array_converter(t_snode *stack_a, int size)
 {

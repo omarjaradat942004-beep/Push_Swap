@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/19 13:36:12 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/19 14:45:27 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	flag_count(int argc, char **argv)
 		return (-1);
 	return (count);
 }
-static int	disorder_selecter(char **argv, int counter)
+static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snode **stack_b)
 {
 	int	index;
 	int	index2;
@@ -98,9 +98,11 @@ static int	disorder_selecter(char **argv, int counter)
                                 && ft_strncmp(argv[index], res[index2], ft_strlen(res[index2])) == 0)
 			{
 				if (index2 == 0)
-					ft_printf_str("strategy = simple / O(n^2)\n");
+					selection_sort(stack_a, stack_b);
+					//ft_printf_str("strategy = simple / O(n^2)\n");
 				else if (index2 == 1)
-					ft_printf_str("strategy = medium / O(n sqrt(n))\n");
+					chunk_based_sort(stack_a, stack_b);
+					//ft_printf_str("strategy = medium / O(n sqrt(n))\n");
 				else if (index2 == 2)
 					ft_printf_str("strategy = complex / O(n log(n))\n");
 				else if (index2 == 3)
@@ -134,17 +136,23 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	counter = flag_count(argc, argv);
 	if (counter > 2 || counter == -1)
-		return (ft_printf_str("Error(flag overload)"), -1);
+		return (ft_printf_str("Error(flag overload)\n"), -1);
 	parser(argc, argv, &stack_a, &counter);
+	if (argc - counter - 1 == 1)
+		return (0);
 	disorder = compute_disorder(stack_a, argc - counter);
-	printf("disorder = %.2f\n", disorder);
-	selection_sort(&stack_a, &stack_b);
+	if (disorder == 0.0)
+		return (0);
+	ft_printf_float(disorder);
+	ft_printf_str("\n");
+	//selection_sort(&stack_a, &stack_b);
+	if(!disorder_selecter(argv, counter, &stack_a, &stack_b))
+		adapter(&stack_a, &stack_b, disorder);
+		//ft_printf_str("strategy = adaptive\n");
+	//Test if stack_a was sorted successfully
 	while (stack_a)
 	{
 		printf("%d\n", stack_a->value);
 		stack_a = stack_a->next;
 	}
-	if(!disorder_selecter(argv, counter))
-		ft_printf_str("strategy = adaptive");
-
 }
