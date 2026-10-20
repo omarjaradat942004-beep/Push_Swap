@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/20 14:43:59 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/20 21:29:36 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	counter = flag_count(argc, argv);
+	if (argc == 1)
+		return (ft_printf_str("No arguments\n"), 0);
 	if (counter > 2 || counter == -1)
 		return (ft_printf_str("Error(flag overload)\n"), -1);
 	parser(argc, argv, &stack_a, &counter);
@@ -145,10 +147,8 @@ int	main(int argc, char **argv)
 		return (0);
 	ft_printf_float(disorder);
 	ft_printf_str("\n");
-	//selection_sort(&stack_a, &stack_b);
 	if(!disorder_selecter(argv, counter, &stack_a, &stack_b))
 		adapter(&stack_a, &stack_b, disorder);
-		//ft_printf_str("strategy = adaptive\n");
 	//Test if stack_a was sorted successfully
 	while (stack_a)
 	{

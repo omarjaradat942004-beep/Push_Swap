@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 16:12:30 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/18 17:49:00 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/20 21:29:07 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ int	parser(int argc, char **argv, t_snode **stack_a, int *flag_num)
 	int	num;
 
 	exit = 0;
-	if (argc == 1)
-		return (ft_printf_str("No arguments\n"), 0);
 	if (find_invalid(argc, argv, &exit, flag_num) == -1)
 		return (-1);
 	if (argc - *flag_num - 1 == 1)
