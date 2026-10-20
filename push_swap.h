@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/20 13:51:15 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/20 14:40:08 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ void	do_rrb(t_snode **st_b);
 void	do_rrr(t_snode **st_a, t_snode **st_b);
 /*---------------------------------------------*/
 float	compute_disorder(t_snode *stack_a, int size);
-void	selection_sort(t_snode **stack_a, t_snode **stack_b);
-void	adapter(t_snode **stack_a, t_snode **stack_b,float disorder);
 void	ft_printf_float(double num);
+void	adapter(t_snode **stack_a, t_snode **stack_b, float disorder);
 void	selection_sort(t_snode **stack_a, t_snode **stack_b);
 void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b);
 
