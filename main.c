@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/22 14:56:47 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/22 15:35:09 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ static int	flag_count(int argc, char **argv)
 	int		count;
 	char	**result;
 	int		wrong_order;
-	t_op	*operations;
 
-	init(&operations);
 	wrong_order = 0;
 	result = flag_split();
 	index = 1;
