@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/22 15:35:09 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/22 16:20:52 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snod
 				else if (index2 == 1)
 					chunk_based_sort(stack_a, stack_b);
 				else if (index2 == 2)
-					ft_printf_str("strategy = complex / O(n log(n))\n");
+					ft_printf_str("strategy = nooooo / O(n log(n))\n");
 				else if (index2 == 3)
 					ft_printf_str("strategy = adaptive\n");
 				else if (index2 == 4)
 				{
-					bench_count++;
+					(*bench_count)++;
 					adaptive++;
 				}
 				else
@@ -135,7 +135,7 @@ int	main(int argc, char **argv)
 	operations = malloc(sizeof(t_op));
 	if (!operations)
 		return (-1);
-	//init(&operations);
+	init(&operations);
 	bench_count = 0;
 	stack_a = NULL;
 	stack_b = NULL;
@@ -159,7 +159,13 @@ int	main(int argc, char **argv)
 		printf("%d\n", stack_a->value);
 		stack_a = stack_a->next;
 	}
-	if (bench_count == 1 && counter == 1)
-		benchmark(argc, argv, counter, disorder);
+	if (bench_count > 0)
+	{
+		while (bench_count > 0)
+		{
+			benchmark(argc, argv, counter, disorder);
+			bench_count--;
+		}
+	}
 
 }

@@ -6,7 +6,7 @@
 /*   By: omajarad <omar.jaradat1@learner.42.tech>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 13:10:38 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/22 15:13:34 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/22 16:19:37 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static char    **flag_split_2(void)
         char    **strings;
         char    c;
 
-        str = "--simple,--medium,--complex,--adaptive,--bench";
+        str = "--simple,--medium,--complex,--adaptive";
         c = ',';
         strings = ft_split(str, c);
         return (strings);
@@ -95,7 +95,7 @@ void	benchmark(int argc, char **argv, int counter, float disorder)
 	ft_printf_float(disorder);
 	ft_printf_str_2("\n");
 	if (counter == 1)
-		ft_printf_str_2("strategy = adaptive\n");
+		ft_printf_str_2("[bench] strategy: Adaptive / O(n n)\n");
 	else
 	{
 		index = 1;
