@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/22 16:20:52 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/22 21:57:51 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ static int	bench_not_found(char **argv, char **result, int count)
 	int	index;
 
 	index = 0;
-	if (count == 2 && (ft_strlen(argv[1]) == ft_strlen(result[4])
-			&& ft_strncmp(argv[1], result[4], ft_strlen(result[4])) == 0))
+	if (count == 2 && ft_strncmp(argv[1], result[4], ft_strlen(result[4]) + 1) == 0) 
 		index++;
-	if (count == 2 && (ft_strlen(argv[2]) == ft_strlen(result[4])
-			&& ft_strncmp(argv[2], result[4], ft_strlen(result[4])) == 0))
+	if (count == 2 && ft_strncmp(argv[2], result[4], ft_strlen(result[4]) + 1) == 0)
 		index++;
 	if (count == 2 && index == 0)
 		return (1);
@@ -58,8 +56,7 @@ static int	flag_count(int argc, char **argv)
 		index2 = 0;
 		while (index2 < 5)
 		{
-			if (ft_strlen(argv[index]) == ft_strlen(result[index2])
-				&& ft_strncmp(argv[index], result[index2], ft_strlen(result[index2])) == 0)
+			if (ft_strncmp(argv[index], result[index2], ft_strlen(result[index2]) + 1) == 0)
 				count++;
 			index2++;
 		}
@@ -68,8 +65,7 @@ static int	flag_count(int argc, char **argv)
 	index2 = 0;
 	while (index2 < 5)
 	{
-		if (ft_strlen(argv[count]) == ft_strlen(result[index2])
-                                && ft_strncmp(argv[count], result[index2], ft_strlen(result[index2])) == 0)
+		if (ft_strncmp(argv[count], result[index2], ft_strlen(result[index2]) + 1) == 0)
 			wrong_order++;
 		index2++;
 	}
@@ -94,15 +90,14 @@ static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snod
 		index2 = 0;
 		while (index2 < 5)
 		{
-			if (ft_strlen(argv[index]) == ft_strlen(res[index2])
-                                && ft_strncmp(argv[index], res[index2], ft_strlen(res[index2])) == 0)
+			if (ft_strncmp(argv[index], res[index2], ft_strlen(res[index2]) + 1) == 0)
 			{
 				if (index2 == 0)
 					selection_sort(stack_a, stack_b);
 				else if (index2 == 1)
 					chunk_based_sort(stack_a, stack_b);
 				else if (index2 == 2)
-					ft_printf_str("strategy = nooooo / O(n log(n))\n");
+					radix_sort(stack_a, stack_b);
 				else if (index2 == 3)
 					ft_printf_str("strategy = adaptive\n");
 				else if (index2 == 4)
@@ -151,6 +146,7 @@ int	main(int argc, char **argv)
 	if (disorder == 0.0)
 		return (0);
 	ft_printf_str("\n");
+	printf("Disorder: %f\n", disorder);
 	if(!disorder_selecter(argv, counter, &stack_a, &stack_b, &bench_count))
 		adapter(&stack_a, &stack_b, disorder);
 	//Test if stack_a was sorted successfully

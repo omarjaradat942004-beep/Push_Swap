@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/22 14:29:53 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/22 20:34:40 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void	benchmark(int argc, char **argv, int counter, float disorder);
 void	adapter(t_snode **stack_a, t_snode **stack_b, float disorder);
 void	selection_sort(t_snode **stack_a, t_snode **stack_b);
 void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b);
+void	radix_sort(t_snode **stack_a, t_snode **stack_b);
 
 #endif

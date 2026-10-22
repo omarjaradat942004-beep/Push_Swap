@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omajarad <omar.jaradat1@learner.42.tech>   +#+  +:+       +#+        */
+/*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 16:06:39 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/18 16:21:32 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/22 20:47:32 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static t_snode	*find_min_node(t_snode **stack)
 
 void	selection_sort(t_snode **stack_a, t_snode **stack_b)
 {
+	write(1, "Selection_sort was used!\n", 25);
 	t_snode	*min_node;
 
 	while (!is_empty(stack_a))

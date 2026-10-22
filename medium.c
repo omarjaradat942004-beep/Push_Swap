@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 19:32:52 by yal-sale          #+#    #+#             */
-/*   Updated: 2026/10/19 10:36:05 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/22 20:48:53 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static t_snode	*find_max_node(t_snode **stack)
 
 void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b)
 {
+	write(1, "Chunk_sort was used!\n", 21);
 	int		chunk_size;
 	int		chunk_max;
 	int		pushed;
