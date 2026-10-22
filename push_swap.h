@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/20 14:40:08 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/22 14:29:53 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ typedef struct s_snode
 	int				index;
 	struct s_snode	*next;
 	struct s_snode	*prev;
-}			t_snode;
+}t_snode;
+
+/*---------------Node's Structure--------------*/
+typedef struct s_op
+{
+        int counters[11];
+}t_op;
 /*---------------------------------------------*/
 /*---------------Parser's Tools----------------*/
 int		ft_atoi(const char *nptr, int *error);
@@ -62,6 +68,8 @@ void	do_rrr(t_snode **st_a, t_snode **st_b);
 /*---------------------------------------------*/
 float	compute_disorder(t_snode *stack_a, int size);
 void	ft_printf_float(double num);
+void	init(t_op **operations);
+void	benchmark(int argc, char **argv, int counter, float disorder);
 void	adapter(t_snode **stack_a, t_snode **stack_b, float disorder);
 void	selection_sort(t_snode **stack_a, t_snode **stack_b);
 void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b);

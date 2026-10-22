@@ -21,7 +21,9 @@ SRCS = ft_atoi.c \
        disorder.c \
        medium.c \
        adaptive.c \
-       ft_printf_float.c
+       ft_printf_float.c \
+       bench.c \
+       initialize.c
 
 
 

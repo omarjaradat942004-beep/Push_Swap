@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/20 21:29:36 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/22 14:56:47 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ static int	flag_count(int argc, char **argv)
 	int		count;
 	char	**result;
 	int		wrong_order;
+	t_op	*operations;
 
+	init(&operations);
 	wrong_order = 0;
 	result = flag_split();
 	index = 1;
@@ -79,7 +81,7 @@ static int	flag_count(int argc, char **argv)
 		return (-1);
 	return (count);
 }
-static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snode **stack_b)
+static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snode **stack_b, int *bench_count)
 {
 	int	index;
 	int	index2;
@@ -99,17 +101,15 @@ static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snod
 			{
 				if (index2 == 0)
 					selection_sort(stack_a, stack_b);
-					//ft_printf_str("strategy = simple / O(n^2)\n");
 				else if (index2 == 1)
 					chunk_based_sort(stack_a, stack_b);
-					//ft_printf_str("strategy = medium / O(n sqrt(n))\n");
 				else if (index2 == 2)
 					ft_printf_str("strategy = complex / O(n log(n))\n");
 				else if (index2 == 3)
 					ft_printf_str("strategy = adaptive\n");
 				else if (index2 == 4)
 				{
-					ft_printf_str("call the bench function\n");
+					bench_count++;
 					adaptive++;
 				}
 				else
@@ -131,7 +131,14 @@ int	main(int argc, char **argv)
 	t_snode	*stack_b;
 	int		counter;
 	float	disorder;
+	int	bench_count;
+	t_op	*operations;
 
+	operations = malloc(sizeof(t_op));
+	if (!operations)
+		return (-1);
+	//init(&operations);
+	bench_count = 0;
 	stack_a = NULL;
 	stack_b = NULL;
 	counter = flag_count(argc, argv);
@@ -145,9 +152,8 @@ int	main(int argc, char **argv)
 	disorder = compute_disorder(stack_a, argc - counter);
 	if (disorder == 0.0)
 		return (0);
-	ft_printf_float(disorder);
 	ft_printf_str("\n");
-	if(!disorder_selecter(argv, counter, &stack_a, &stack_b))
+	if(!disorder_selecter(argv, counter, &stack_a, &stack_b, &bench_count))
 		adapter(&stack_a, &stack_b, disorder);
 	//Test if stack_a was sorted successfully
 	while (stack_a)
@@ -155,4 +161,7 @@ int	main(int argc, char **argv)
 		printf("%d\n", stack_a->value);
 		stack_a = stack_a->next;
 	}
+	if (bench_count == 1 && counter == 1)
+		benchmark(argc, argv, counter, disorder);
+
 }
