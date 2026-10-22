@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/22 21:57:51 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/22 22:47:25 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,6 @@ int	main(int argc, char **argv)
 	disorder = compute_disorder(stack_a, argc - counter);
 	if (disorder == 0.0)
 		return (0);
-	ft_printf_str("\n");
-	printf("Disorder: %f\n", disorder);
 	if(!disorder_selecter(argv, counter, &stack_a, &stack_b, &bench_count))
 		adapter(&stack_a, &stack_b, disorder);
 	//Test if stack_a was sorted successfully

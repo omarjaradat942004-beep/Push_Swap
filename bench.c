@@ -6,7 +6,7 @@
 /*   By: omajarad <omar.jaradat1@learner.42.tech>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 13:10:38 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/22 16:19:37 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/22 22:48:54 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	benchmark(int argc, char **argv, int counter, float disorder)
 	str = flag_split_2();
 	ft_printf_float(disorder);
 	ft_printf_str_2("\n");
-	if (counter == 1)
+	if (counter == 1 || counter == 2)
 		ft_printf_str_2("[bench] strategy: Adaptive / O(n n)\n");
 	else
 	{
@@ -104,8 +104,7 @@ void	benchmark(int argc, char **argv, int counter, float disorder)
                 	index2 = 0;
                 	while (index2 < 3)
                 	{
-                        	if (ft_strlen(argv[index]) == ft_strlen(str[index2])
-                                	&& ft_strncmp(argv[index], str[index2], ft_strlen(str[index2])) == 0)
+                        	if (ft_strncmp(argv[index], str[index2], ft_strlen(str[index2]) + 1) == 0)
                         	{
 					if (index2 == 0)
 						ft_printf_str_2("[bench] strategy: Simple / O(n^2)\n");
@@ -114,10 +113,11 @@ void	benchmark(int argc, char **argv, int counter, float disorder)
 					else if (index2 == 2)
 						ft_printf_str_2("[bench] strategy: Complex / O(n log(n))\n");
 				}
+				index2++;
                         }
-                        index2++;
+			index++;
+                     
                 }
-                index++;
 	}
 	ft_printf_decimal_2(argc);
 }
