@@ -12,32 +12,6 @@
 
 #include "push_swap.h"
 
-static int	stack_rs_initial(t_snode **stack)
-{
-	t_snode	*current;
-	t_snode	*compare;
-	int		stack_rank;
-	int		stack_size;
-
-	current = *stack;
-	stack_size = 0;
-	while (current)
-	{
-		stack_rank = 0;
-		compare = *stack;
-		while (compare)
-		{
-			if (compare->value < current->value)
-				stack_rank++;
-			compare = compare->next;
-		}
-		current->index = stack_rank;
-		stack_size++;
-		current = current->next;
-	}
-	return (stack_size);
-}
-
 static int	ft_sqrt(int num)
 {
 	int	i;
@@ -66,12 +40,11 @@ static t_snode	*find_max_node(t_snode **stack)
 	return (max_node);
 }
 
-void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation)
+static void	push_chunks(t_snode **stack_a, t_snode **stack_b, t_op *operation)
 {
-	write(1, "Chunk_sort was used!\n", 21);
-	int		chunk_size;
-	int		chunk_max;
-	int		pushed;
+	int	chunk_size;
+	int	chunk_max;
+	int	pushed;
 
 	chunk_size = ft_sqrt(stack_rs_initial(stack_a));
 	chunk_max = chunk_size;
@@ -92,6 +65,10 @@ void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation)
 			operation->counters[5]++;
 		}
 	}
+}
+
+static void	pull_back(t_snode **stack_a, t_snode **stack_b, t_op *operation)
+{
 	while (!is_empty(stack_b))
 	{
 		while ((*stack_b) != find_max_node(stack_b))
@@ -102,4 +79,11 @@ void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation)
 		do_pa(stack_a, stack_b);
 		operation->counters[3]++;
 	}
+}
+
+void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation)
+{
+	write(1, "Chunk_sort was used!\n", 21);
+	push_chunks(stack_a, stack_b, operation);
+	pull_back(stack_a, stack_b, operation);
 }

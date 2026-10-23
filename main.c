@@ -15,16 +15,13 @@
 
 static int	bench_not_found(char **argv, char **result, int count)
 {
-	int	index;
-
-	index = 0;
-	if (count == 2 && ft_strncmp(argv[1], result[4], ft_strlen(result[4]) + 1) == 0) 
-		index++;
-	if (count == 2 && ft_strncmp(argv[2], result[4], ft_strlen(result[4]) + 1) == 0)
-		index++;
-	if (count == 2 && index == 0)
-		return (1);
-	return (0);
+	if (count != 2)
+		return (0);
+	if (find_flag(argv[1], result) == 4)
+		return (0);
+	if (find_flag(argv[2], result) == 4)
+		return (0);
+	return (1);
 }
 
 char	**flag_split(void)
@@ -42,81 +39,23 @@ char	**flag_split(void)
 static int	flag_count(int argc, char **argv)
 {
 	int		index;
-	int		index2;
 	int		count;
 	char	**result;
-	int		wrong_order;
 
-	wrong_order = 0;
 	result = flag_split();
 	index = 1;
 	count = 0;
 	while (index < argc)
 	{
-		index2 = 0;
-		while (index2 < 5)
-		{
-			if (ft_strncmp(argv[index], result[index2], ft_strlen(result[index2]) + 1) == 0)
-				count++;
-			index2++;
-		}
+		if (find_flag(argv[index], result) >= 0)
+			count++;
 		index++;
 	}
-	index2 = 0;
-	while (index2 < 5)
-	{
-		if (ft_strncmp(argv[count], result[index2], ft_strlen(result[index2]) + 1) == 0)
-			wrong_order++;
-		index2++;
-	}
-	if (wrong_order == 0 && count > 0)
+	if (find_flag(argv[count], result) < 0 && count > 0)
 		return (-1);
 	if (bench_not_found(argv, result, count))
 		return (-1);
 	return (count);
-}
-static int	disorder_selecter(t_count *counters, t_snode **stack_a, t_snode **stack_b, t_op *operation)
-{
-	int	index;
-	int	index2;
-	char	**res;
-	int	adaptive;
-
-	adaptive = 0;
-	res = flag_split();
-	index = 1;
-	while (index <= counters->counter)
-	{
-		index2 = 0;
-		while (index2 < 5)
-		{
-			if (ft_strncmp(counters->arg[index], res[index2], ft_strlen(res[index2]) + 1) == 0)
-			{
-				if (index2 == 0)
-					selection_sort(stack_a, stack_b, operation);
-				else if (index2 == 1)
-					chunk_based_sort(stack_a, stack_b, operation);
-				else if (index2 == 2)
-					radix_sort(stack_a, stack_b, operation);
-				else if (index2 == 3)
-					adapter(stack_a, stack_b, counters, operation);
-				else if (index2 == 4)
-				{
-					counters->bench_count++;
-					adaptive++;
-				}
-				else
-					adaptive++;
-				break ;
-			}
-			index2++;
-		}
-		index++;
-	}
-	if ((adaptive == 2 && counters->counter == 2) || (adaptive == 1 && counters->counter == 1) 
-			|| (counters->counter == 0))
-		return (0);
-	return (1);
 }
 
 int	main(int argc, char **argv)

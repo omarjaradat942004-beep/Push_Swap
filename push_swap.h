@@ -21,21 +21,22 @@ typedef struct s_snode
 	int				index;
 	struct s_snode	*next;
 	struct s_snode	*prev;
-}t_snode;
+}	t_snode;
 
 /*---------------operations Structure--------------*/
 typedef struct s_op
 {
-        int counters[11];
-}t_op;
+	int	counters[11];
+}	t_op;
+
 /*---------------counter/bench Structure--------------*/
 typedef struct s_count
 {
-        int	counter;
-	int	bench_count;
+	int		counter;
+	int		bench_count;
 	float	disorder;
 	char	**arg;
-}t_count;
+}	t_count;
 /*---------------------------------------------*/
 /*---------------Parser's Tools----------------*/
 int		ft_atoi(const char *nptr, int *error);
@@ -78,11 +79,17 @@ float	compute_disorder(t_snode *stack_a, int size);
 void	ft_printf_float(double num);
 void	init(t_op **operations);
 void	benchmark(char **argv, t_count *counters, t_op *operation);
-void	adapter(t_snode **stack_a, t_snode **stack_b, t_count *counters, t_op *operation);
+void	adapter(t_snode **stack_a, t_snode **stack_b, t_count *counters,
+			t_op *operation);
 void	selection_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
 void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
 void	radix_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
 void	print_op(t_op *operation);
 char	**argvs(char **argv);
+int		stack_rs_initial(t_snode **stack);
+char	**flag_split(void);
+int		find_flag(char *arg, char **flags);
+int		disorder_selecter(t_count *counters, t_snode **stack_a,
+			t_snode **stack_b, t_op *operation);
 
 #endif

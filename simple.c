@@ -31,9 +31,9 @@ static t_snode	*find_min_node(t_snode **stack)
 
 void	selection_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation)
 {
-	write(1, "Selection_sort was used!\n", 25);
 	t_snode	*min_node;
 
+	write(1, "Selection_sort was used!\n", 25);
 	while (!is_empty(stack_a))
 	{
 		min_node = find_min_node(stack_a);
