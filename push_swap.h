@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/22 20:34:40 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/23 12:02:43 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ typedef struct s_snode
 	struct s_snode	*prev;
 }t_snode;
 
-/*---------------Node's Structure--------------*/
+/*---------------operations Structure--------------*/
 typedef struct s_op
 {
         int counters[11];
 }t_op;
+/*---------------counter/bench Structure--------------*/
+typedef struct s_count
+{
+        int	counter;
+	int	bench_count;
+}t_count;
 /*---------------------------------------------*/
 /*---------------Parser's Tools----------------*/
 int		ft_atoi(const char *nptr, int *error);

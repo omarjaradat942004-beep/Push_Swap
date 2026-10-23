@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/22 22:47:25 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/23 13:46:02 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	flag_count(int argc, char **argv)
 		return (-1);
 	return (count);
 }
-static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snode **stack_b, int *bench_count)
+static int	disorder_selecter(char **argv, t_count *counters, t_snode **stack_a, t_snode **stack_b)
 {
 	int	index;
 	int	index2;
@@ -85,7 +85,7 @@ static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snod
 	adaptive = 0;
 	res = flag_split();
 	index = 1;
-	while (index <= counter)
+	while (index <= counters->counter)
 	{
 		index2 = 0;
 		while (index2 < 5)
@@ -102,7 +102,7 @@ static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snod
 					ft_printf_str("strategy = adaptive\n");
 				else if (index2 == 4)
 				{
-					(*bench_count)++;
+					counters->bench_count++;
 					adaptive++;
 				}
 				else
@@ -113,7 +113,8 @@ static int	disorder_selecter(char **argv, int counter, t_snode **stack_a, t_snod
 		}
 		index++;
 	}
-	if ((adaptive == 2 && counter == 2) || (adaptive == 1 && counter == 1) || (counter == 0))
+	if ((adaptive == 2 && counters->counter == 2) || (adaptive == 1 && counters->counter == 1) 
+			|| (counters->counter == 0))
 		return (0);
 	return (1);
 }
@@ -122,30 +123,30 @@ int	main(int argc, char **argv)
 {
 	t_snode	*stack_a;
 	t_snode	*stack_b;
-	int		counter;
+	t_count	*counters;
 	float	disorder;
-	int	bench_count;
 	t_op	*operations;
 
+	counters = malloc(sizeof(t_count));
 	operations = malloc(sizeof(t_op));
-	if (!operations)
+	if (!operations || !counters)
 		return (-1);
+	counters->bench_count = 0;
 	init(&operations);
-	bench_count = 0;
 	stack_a = NULL;
 	stack_b = NULL;
-	counter = flag_count(argc, argv);
+	counters->counter = flag_count(argc, argv);
 	if (argc == 1)
 		return (ft_printf_str("No arguments\n"), 0);
-	if (counter > 2 || counter == -1)
+	if (counters->counter > 2 || counters->counter == -1)
 		return (ft_printf_str("Error(flag overload)\n"), -1);
-	parser(argc, argv, &stack_a, &counter);
-	if (argc - counter - 1 == 1)
+	parser(argc, argv, &stack_a, &counters->counter);
+	if (argc - counters->counter - 1 == 1)
 		return (0);
-	disorder = compute_disorder(stack_a, argc - counter);
+	disorder = compute_disorder(stack_a, argc - counters->counter);
 	if (disorder == 0.0)
 		return (0);
-	if(!disorder_selecter(argv, counter, &stack_a, &stack_b, &bench_count))
+	if(!disorder_selecter(argv, counters, &stack_a, &stack_b))
 		adapter(&stack_a, &stack_b, disorder);
 	//Test if stack_a was sorted successfully
 	while (stack_a)
@@ -153,12 +154,12 @@ int	main(int argc, char **argv)
 		printf("%d\n", stack_a->value);
 		stack_a = stack_a->next;
 	}
-	if (bench_count > 0)
+	if (counters->bench_count > 0)
 	{
-		while (bench_count > 0)
+		while (counters->bench_count > 0)
 		{
-			benchmark(argc, argv, counter, disorder);
-			bench_count--;
+			benchmark(argc, argv, counters->counter, disorder);
+			counters->bench_count--;
 		}
 	}
 
