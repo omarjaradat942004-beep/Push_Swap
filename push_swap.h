@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 12:02:43 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/23 13:59:11 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_count
 {
         int	counter;
 	int	bench_count;
+	float	disorder;
 }t_count;
 /*---------------------------------------------*/
 /*---------------Parser's Tools----------------*/
@@ -76,7 +77,7 @@ float	compute_disorder(t_snode *stack_a, int size);
 void	ft_printf_float(double num);
 void	init(t_op **operations);
 void	benchmark(int argc, char **argv, int counter, float disorder);
-void	adapter(t_snode **stack_a, t_snode **stack_b, float disorder);
+void	adapter(t_snode **stack_a, t_snode **stack_b, t_count *counters);
 void	selection_sort(t_snode **stack_a, t_snode **stack_b);
 void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b);
 void	radix_sort(t_snode **stack_a, t_snode **stack_b);

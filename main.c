@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 13:46:02 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/23 13:59:34 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ int	main(int argc, char **argv)
 	t_snode	*stack_a;
 	t_snode	*stack_b;
 	t_count	*counters;
-	float	disorder;
 	t_op	*operations;
 
 	counters = malloc(sizeof(t_count));
@@ -143,11 +142,11 @@ int	main(int argc, char **argv)
 	parser(argc, argv, &stack_a, &counters->counter);
 	if (argc - counters->counter - 1 == 1)
 		return (0);
-	disorder = compute_disorder(stack_a, argc - counters->counter);
-	if (disorder == 0.0)
+	counters->disorder = compute_disorder(stack_a, argc - counters->counter);
+	if (counters->disorder == 0.0)
 		return (0);
 	if(!disorder_selecter(argv, counters, &stack_a, &stack_b))
-		adapter(&stack_a, &stack_b, disorder);
+		adapter(&stack_a, &stack_b, counters);
 	//Test if stack_a was sorted successfully
 	while (stack_a)
 	{
@@ -158,7 +157,7 @@ int	main(int argc, char **argv)
 	{
 		while (counters->bench_count > 0)
 		{
-			benchmark(argc, argv, counters->counter, disorder);
+			benchmark(argc, argv, counters->counter, counters->disorder);
 			counters->bench_count--;
 		}
 	}
