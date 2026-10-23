@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 15:52:29 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/23 16:50:19 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	flag_count(int argc, char **argv)
 		return (-1);
 	return (count);
 }
-static int	disorder_selecter(char **argv, t_count *counters, t_snode **stack_a, t_snode **stack_b, t_op *operation)
+static int	disorder_selecter(t_count *counters, t_snode **stack_a, t_snode **stack_b, t_op *operation)
 {
 	int	index;
 	int	index2;
@@ -90,7 +90,7 @@ static int	disorder_selecter(char **argv, t_count *counters, t_snode **stack_a, 
 		index2 = 0;
 		while (index2 < 5)
 		{
-			if (ft_strncmp(argv[index], res[index2], ft_strlen(res[index2]) + 1) == 0)
+			if (ft_strncmp(counters->arg[index], res[index2], ft_strlen(res[index2]) + 1) == 0)
 			{
 				if (index2 == 0)
 					selection_sort(stack_a, stack_b, operation);
@@ -130,6 +130,7 @@ int	main(int argc, char **argv)
 	operations = malloc(sizeof(t_op));
 	if (!operations || !counters)
 		return (-1);
+	counters->arg = argvs(argv);
 	counters->bench_count = 0;
 	init(&operations);
 	stack_a = NULL;
@@ -145,7 +146,7 @@ int	main(int argc, char **argv)
 	counters->disorder = compute_disorder(stack_a, argc - counters->counter);
 	if (counters->disorder == 0.0)
 		return (0);
-	if(!disorder_selecter(argv, counters, &stack_a, &stack_b, operations))
+	if(!disorder_selecter(counters, &stack_a, &stack_b, operations))
 		adapter(&stack_a, &stack_b, counters, operations);
 	//Test if stack_a was sorted successfully
 	while (stack_a)

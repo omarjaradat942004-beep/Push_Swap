@@ -25,7 +25,8 @@ SRCS = ft_atoi.c \
        bench.c \
        initialize.c \
 	complex.c \
-	print_op.c
+	print_op.c \
+	argv.c
 
 
 
