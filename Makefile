@@ -24,7 +24,8 @@ SRCS = ft_atoi.c \
        ft_printf_float.c \
        bench.c \
        initialize.c \
-	   complex.c
+	complex.c \
+	print_op.c
 
 
 

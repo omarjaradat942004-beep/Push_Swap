@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 13:59:11 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/23 15:36:53 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ void	do_rrr(t_snode **st_a, t_snode **st_b);
 float	compute_disorder(t_snode *stack_a, int size);
 void	ft_printf_float(double num);
 void	init(t_op **operations);
-void	benchmark(int argc, char **argv, int counter, float disorder);
-void	adapter(t_snode **stack_a, t_snode **stack_b, t_count *counters);
-void	selection_sort(t_snode **stack_a, t_snode **stack_b);
-void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b);
-void	radix_sort(t_snode **stack_a, t_snode **stack_b);
+void	benchmark(char **argv, t_count *counters, t_op *operation);
+void	adapter(t_snode **stack_a, t_snode **stack_b, t_count *counters, t_op *operation);
+void	selection_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
+void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
+void	radix_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
+void	print_op(t_op *operation);
 
 #endif

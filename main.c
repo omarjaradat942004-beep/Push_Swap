@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 13:59:34 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/23 15:52:29 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	flag_count(int argc, char **argv)
 		return (-1);
 	return (count);
 }
-static int	disorder_selecter(char **argv, t_count *counters, t_snode **stack_a, t_snode **stack_b)
+static int	disorder_selecter(char **argv, t_count *counters, t_snode **stack_a, t_snode **stack_b, t_op *operation)
 {
 	int	index;
 	int	index2;
@@ -93,13 +93,13 @@ static int	disorder_selecter(char **argv, t_count *counters, t_snode **stack_a, 
 			if (ft_strncmp(argv[index], res[index2], ft_strlen(res[index2]) + 1) == 0)
 			{
 				if (index2 == 0)
-					selection_sort(stack_a, stack_b);
+					selection_sort(stack_a, stack_b, operation);
 				else if (index2 == 1)
-					chunk_based_sort(stack_a, stack_b);
+					chunk_based_sort(stack_a, stack_b, operation);
 				else if (index2 == 2)
-					radix_sort(stack_a, stack_b);
+					radix_sort(stack_a, stack_b, operation);
 				else if (index2 == 3)
-					ft_printf_str("strategy = adaptive\n");
+					adapter(stack_a, stack_b, counters, operation);
 				else if (index2 == 4)
 				{
 					counters->bench_count++;
@@ -145,8 +145,8 @@ int	main(int argc, char **argv)
 	counters->disorder = compute_disorder(stack_a, argc - counters->counter);
 	if (counters->disorder == 0.0)
 		return (0);
-	if(!disorder_selecter(argv, counters, &stack_a, &stack_b))
-		adapter(&stack_a, &stack_b, counters);
+	if(!disorder_selecter(argv, counters, &stack_a, &stack_b, operations))
+		adapter(&stack_a, &stack_b, counters, operations);
 	//Test if stack_a was sorted successfully
 	while (stack_a)
 	{
@@ -157,9 +157,8 @@ int	main(int argc, char **argv)
 	{
 		while (counters->bench_count > 0)
 		{
-			benchmark(argc, argv, counters->counter, counters->disorder);
+			benchmark(argv, counters, operations);
 			counters->bench_count--;
 		}
 	}
-
 }

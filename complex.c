@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/21 14:40:56 by yal-sale          #+#    #+#             */
-/*   Updated: 2026/10/22 20:49:29 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/23 14:28:27 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	get_max_bits(int size)
 	return (bits_count);
 }
 
-void	radix_sort(t_snode **stack_a, t_snode **stack_b)
+void	radix_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation)
 {
 	write(1, "Radix_sort was used!\n", 21);
 	int stack_size;
@@ -65,13 +65,22 @@ void	radix_sort(t_snode **stack_a, t_snode **stack_b)
 		while (count < stack_size)
 		{
 			if ((((*stack_a)->index >> current_bit) & 1) == 0)
+			{
 				do_pb(stack_b, stack_a);
+				operation->counters[4]++;
+			}
 			else
+			{
 				do_ra(stack_a);
+				operation->counters[5]++;
+			}
 			count++;
 		}
 		while (!is_empty(stack_b))
+		{
 			do_pa(stack_a, stack_b);
+			operation->counters[3]++;
+		}
 		current_bit++;
 	}
 }
