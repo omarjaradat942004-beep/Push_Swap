@@ -42,6 +42,7 @@ typedef struct s_count
 int		ft_atoi(const char *nptr, int *error);
 int		ft_isdigit(int c);
 int		ft_printf_str(char *str);
+void	ft_error(void);
 int		ft_printf_decimal(int num);
 int		parser(int argc, char **argv, t_snode **stack_a, int *flag_num);
 char	*ft_itoa(int n);

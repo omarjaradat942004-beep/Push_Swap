@@ -37,6 +37,13 @@ static void	run_sort(int flag, t_snode **stack_a, t_snode **stack_b,
 		radix_sort(stack_a, stack_b, operation);
 }
 
+static int	skip_sorted(int flag, t_count *counters)
+{
+	if (counters->disorder == 0.0f && flag != 4)
+		return (-1);
+	return (flag);
+}
+
 static int	flags_only(t_count *counters, int bench)
 {
 	if (counters->counter == 0)
@@ -61,7 +68,7 @@ int	disorder_selecter(t_count *counters, t_snode **stack_a,
 	index = 1;
 	while (index <= counters->counter)
 	{
-		flag = find_flag(counters->arg[index], res);
+		flag = skip_sorted(find_flag(counters->arg[index], res), counters);
 		if (flag >= 0 && flag <= 2)
 			run_sort(flag, stack_a, stack_b, operation);
 		else if (flag == 3)

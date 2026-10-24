@@ -35,49 +35,54 @@ static int	ft_printf_str_2(char *str)
 	return (counter);
 }
 
-static char	**flag_split_2(void)
+static int	strategy_of(char **argv, t_count *counters)
 {
-	char	*str;
-	char	**strings;
-	char	c;
+	char	**flags;
+	int		index;
+	int		flag;
+	int		strategy;
 
-	str = "--simple,--medium,--complex,--adaptive";
-	c = ',';
-	strings = ft_split(str, c);
-	return (strings);
+	flags = flag_split();
+	strategy = 3;
+	index = 1;
+	while (flags && index <= counters->counter)
+	{
+		flag = find_flag(argv[index], flags);
+		if (flag >= 0 && flag <= 3)
+			strategy = flag;
+		index++;
+	}
+	if (flags)
+		free_flag(flags);
+	return (strategy);
 }
 
-void	print_else(char **argv, char **str)
+static void	print_adaptive(float disorder)
 {
-	if (ft_strncmp(argv[1], str[0], ft_strlen(str[0]) + 1) == 0
-		|| ft_strncmp(argv[2], str[0], ft_strlen(str[0]) + 1) == 0)
+	if (disorder < 0.2)
+		ft_printf_str_2("[bench] strategy: Adaptive / O(n^2)\n");
+	else if (disorder < 0.5)
+		ft_printf_str_2("[bench] strategy: Adaptive / O(n sqrt(n))\n");
+	else
+		ft_printf_str_2("[bench] strategy: Adaptive / O(n log(n))\n");
+}
+
+static void	print_strategy(int strategy, float disorder)
+{
+	if (strategy == 0)
 		ft_printf_str_2("[bench] strategy: Simple / O(n^2)\n");
-	else if (ft_strncmp(argv[1], str[1], ft_strlen(str[1]) + 1) == 0
-		|| ft_strncmp(argv[2], str[1], ft_strlen(str[1]) + 1) == 0)
-		ft_printf_str_2("[bench] strategy: Medium / O(n^2)\n");
-	else if (ft_strncmp(argv[1], str[2], ft_strlen(str[2]) + 1) == 0
-		|| ft_strncmp(argv[2], str[2], ft_strlen(str[2]) + 1) == 0)
-		ft_printf_str_2("[bench] strategy: Complex / O(n^2)\n");
+	else if (strategy == 1)
+		ft_printf_str_2("[bench] strategy: Medium / O(n sqrt(n))\n");
+	else if (strategy == 2)
+		ft_printf_str_2("[bench] strategy: Complex / O(n log(n))\n");
+	else
+		print_adaptive(disorder);
 }
 
 void	benchmark(char **argv, t_count *counters, t_op *operation)
 {
-	char	**str;
-
-	str = flag_split_2();
 	ft_printf_float(counters->disorder);
 	ft_printf_str_2("\n");
-	if (counters->bench_count == counters->counter)
-	{
-		if (counters->disorder < 0.2)
-			ft_printf_str_2("[bench] strategy: Adaptive / O(n^2)\n");
-		else if (counters->disorder >= 0.2 && counters->disorder < 0.5)
-			ft_printf_str_2("[bench] strategy: Adaptive / O(n sqrt(n))\n");
-		else if (counters->disorder >= 0.5)
-			ft_printf_str_2("[bench] strategy: Adaptive / O(n log(n))\n");
-	}
-	else
-		print_else(argv, str);
-	free_flag(str);
+	print_strategy(strategy_of(argv, counters), counters->disorder);
 	print_op(operation);
 }

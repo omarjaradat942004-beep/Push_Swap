@@ -58,18 +58,21 @@ static int	flag_count(int argc, char **argv)
 	return (count);
 }
 
-void	main_helper(t_count *counters, t_snode *stack_a,
-		t_snode *stack_b, t_op *operations)
+static void	main_helper(t_count *counters, t_snode *stack_a,
+		t_op *operations)
 {
-	if (!disorder_selecter(counters, &stack_a, &stack_b, operations))
-		adapter(&stack_a, &stack_b, counters, operations);
-	if (counters->bench_count > 0)
+	t_snode	*stack_b;
+
+	stack_b = NULL;
+	if (stack_a)
 	{
-		while (counters->bench_count > 0)
-		{
+		counters->disorder = compute_disorder(stack_a,
+				get_stack_size(stack_a));
+		if (!disorder_selecter(counters, &stack_a, &stack_b, operations)
+			&& counters->disorder != 0.0f)
+			adapter(&stack_a, &stack_b, counters, operations);
+		if (counters->bench_count > 0)
 			benchmark(counters->arg, counters, operations);
-			counters->bench_count--;
-		}
 	}
 	free_stack(&stack_a);
 	free_stack(&stack_b);
@@ -80,28 +83,28 @@ void	main_helper(t_count *counters, t_snode *stack_a,
 int	main(int argc, char **argv)
 {
 	t_snode	*stack_a;
-	t_snode	*stack_b;
 	t_count	*counters;
 	t_op	*operations;
 
+	if (argc == 1)
+		return (0);
 	counters = malloc(sizeof(t_count));
 	operations = malloc(sizeof(t_op));
+	stack_a = NULL;
 	if (!operations || !counters)
-		return (-1);
+		return (free(counters), free(operations), 1);
 	counters->arg = argvs(argv);
 	counters->bench_count = 0;
 	init(&operations);
-	stack_a = NULL;
-	stack_b = NULL;
 	counters->counter = flag_count(argc, argv);
-	if (argc == 1 || counters->counter > 2 || counters->counter == -1)
-		return (ft_printf_str("Error\n"), -1);
-	parser(argc, argv, &stack_a, &counters->counter);
-	if (argc - counters->counter - 1 == 0)
-		return (ft_printf_str("Error\n") ,0);
-	counters->disorder = compute_disorder(stack_a, argc - counters->counter);
-	if (counters->disorder == 0.0)
-		return (0);
-	main_helper(counters, stack_a, stack_b, operations);
+	if (counters->counter < 0 || counters->counter > 2
+		|| parser(argc, argv, &stack_a, &counters->counter) == -1)
+	{
+		free_stack(&stack_a);
+		free(counters);
+		free(operations);
+		return (ft_error(), 1);
+	}
+	main_helper(counters, stack_a, operations);
 	return (0);
 }

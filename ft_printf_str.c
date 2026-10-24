@@ -34,3 +34,9 @@ int	ft_printf_str(char *str)
 	}
 	return (counter);
 }
+
+void	ft_error(void)
+{
+	if (write(2, "Error\n", 6) == -1)
+		return ;
+}

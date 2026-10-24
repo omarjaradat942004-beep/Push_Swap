@@ -34,9 +34,9 @@ static long	limit_range(int sign)
 	return (2147483648L);
 }
 
-static int	check_overflow(int value, int digit, long limit)
+static int	check_overflow(long value, int digit, long limit)
 {
-	if (value > (limit - digit) / 10)
+	if (value * 10 + digit > limit)
 		return (1);
 	return (0);
 }
@@ -45,7 +45,7 @@ int	ft_atoi(const char *nptr, int *error)
 {
 	int		index;
 	int		sign;
-	int		value;
+	long	value;
 	int		digit;
 	long	limit;
 
@@ -64,5 +64,5 @@ int	ft_atoi(const char *nptr, int *error)
 		value = value * 10 + digit;
 		index++;
 	}
-	return (value * sign);
+	return ((int)(value * sign));
 }
