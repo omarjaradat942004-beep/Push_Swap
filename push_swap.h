@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 16:47:50 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/24 20:41:15 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	*ft_itoa(int n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
+void	free_flag(char **str);
+void	free_stack(t_snode **stack);
 /*---------------------------------------------*/
 /*-------------------Util----------------------*/
 t_snode	*new_node(int value);
@@ -57,23 +59,27 @@ t_snode	*pop_node(t_snode **stack);
 int		peak(t_snode **stack);
 /*---------------------------------------------*/
 /*-------------------Swap----------------------*/
-void	do_sa(t_snode **st_a);
-void	do_sb(t_snode **st_b);
-void	do_ss(t_snode **st_a, t_snode **st_b);
+void	do_sa(t_snode **st_a, t_op *operation);
+void	do_sb(t_snode **st_b, t_op *operation);
+void	do_ss(t_snode **st_a, t_snode **st_b, t_op *operation);
 /*---------------------------------------------*/
 /*-------------------Push----------------------*/
-void	do_pa(t_snode **st_a, t_snode **st_b);
-void	do_pb(t_snode **st_b, t_snode **st_a);
+void	do_pa(t_snode **st_a, t_snode **st_b, t_op *operation);
+void	do_pb(t_snode **st_b, t_snode **st_a, t_op *operation);
 /*---------------------------------------------*/
 /*------------------Rotate---------------------*/
-void	do_ra(t_snode **st_a);
-void	do_rb(t_snode **st_b);
-void	do_rr(t_snode **st_a, t_snode **st_b);
+void	do_ra(t_snode **st_a, t_op *operation);
+void	do_rb(t_snode **st_b, t_op *operation);
+void	do_rr(t_snode **st_a, t_snode **st_b, t_op *operation);
 /*---------------------------------------------*/
 /*--------------Reverse Rotate-----------------*/
-void	do_rra(t_snode **st_a);
-void	do_rrb(t_snode **st_b);
-void	do_rrr(t_snode **st_a, t_snode **st_b);
+void	do_rra(t_snode **st_a, t_op *operation);
+void	do_rrb(t_snode **st_b, t_op *operation);
+void	do_rrr(t_snode **st_a, t_snode **st_b, t_op *operation);
+/*---------------------------------------------*/
+/*----Stack extra operations : {size, pos}-----*/
+int		get_stack_size(t_snode *stack);
+int		get_node_pos(t_snode *stack, t_snode *target_node);
 /*---------------------------------------------*/
 float	compute_disorder(t_snode *stack_a, int size);
 void	ft_printf_float(double num);
@@ -86,7 +92,6 @@ void	chunk_based_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
 void	radix_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
 void	print_op(t_op *operation);
 char	**argvs(char **argv);
-int		stack_rs_initial(t_snode **stack);
 char	**flag_split(void);
 int		find_flag(char *arg, char **flags);
 int		disorder_selecter(t_count *counters, t_snode **stack_a,

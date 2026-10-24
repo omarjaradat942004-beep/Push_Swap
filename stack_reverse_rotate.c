@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 18:58:25 by yal-sale          #+#    #+#             */
-/*   Updated: 2026/10/14 19:49:37 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/24 17:52:02 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,25 @@ static int	reverse_rotate(t_snode **stack)
 	return (1);
 }
 
-void	do_rra(t_snode **st_a)
+void	do_rra(t_snode **st_a, t_op *operation)
 {
 	if (reverse_rotate(st_a))
+	{
 		write(1, "rra\n", 4);
+		operation->counters[8]++;
+	}
 }
 
-void	do_rrb(t_snode **st_b)
+void	do_rrb(t_snode **st_b, t_op *operation)
 {
 	if (reverse_rotate(st_b))
+	{
 		write(1, "rrb\n", 4);
+		operation->counters[9]++;
+	}
 }
 
-void	do_rrr(t_snode **st_a, t_snode **st_b)
+void	do_rrr(t_snode **st_a, t_snode **st_b, t_op *operation)
 {
 	int	reversed_a;
 	int	reversed_b;
@@ -49,5 +55,8 @@ void	do_rrr(t_snode **st_a, t_snode **st_b)
 	reversed_a = reverse_rotate(st_a);
 	reversed_b = reverse_rotate(st_b);
 	if (reversed_a || reversed_b)
+	{
 		write(1, "rrr\n", 4);
+		operation->counters[10]++;
+	}
 }

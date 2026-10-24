@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 15:39:02 by yal-sale          #+#    #+#             */
-/*   Updated: 2026/10/14 18:44:25 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/24 17:17:38 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,20 @@ static int	push(t_snode **stack1, t_snode **stack2)
 	return (1);
 }
 
-void	do_pa(t_snode **st_a, t_snode **st_b)
+void	do_pa(t_snode **st_a, t_snode **st_b, t_op *operation)
 {
 	if (push(st_a, st_b))
+	{
 		write(1, "pa\n", 3);
+		operation->counters[3]++;
+	}
 }
 
-void	do_pb(t_snode **st_b, t_snode **st_a)
+void	do_pb(t_snode **st_b, t_snode **st_a, t_op *operation)
 {
 	if (push(st_b, st_a))
+	{
 		write(1, "pb\n", 3);
+		operation->counters[4]++;
+	}
 }

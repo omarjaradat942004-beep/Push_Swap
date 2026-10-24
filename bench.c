@@ -6,7 +6,7 @@
 /*   By: omajarad <omar.jaradat1@learner.42.tech>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 13:10:38 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 16:02:22 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/24 16:56:45 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void	benchmark(char **argv, t_count *counters, t_op *operation)
 	}
 	else
 		print_else(argv, str);
+	free_flag(str);
 	print_op(operation);
 }

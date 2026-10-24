@@ -19,16 +19,17 @@ SRCS = ft_atoi.c \
        ft_strlen.c \
        ft_split.c \
        disorder.c \
-       disorder_select.c \
-       ranking.c \
        medium.c \
        adaptive.c \
        ft_printf_float.c \
        bench.c \
        initialize.c \
-	complex.c \
-	print_op.c \
-	argv.c
+       complex.c \
+       print_op.c \
+       argv.c \
+       stack_sizepos.c \
+       disorder_select.c \
+	   free_flag.c
 
 
 

@@ -6,7 +6,7 @@
 /*   By: omajarad <omar.jaradat1@learner.42.tech>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 14:50:10 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 15:24:45 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/24 17:07:05 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,5 @@ void	print_op(t_op *operation)
 			ft_printf_str_2("\n");
 	}
 	ft_printf_str_2("\n");
+	free_flag(res);
 }

@@ -6,12 +6,11 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 16:50:19 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/24 21:03:45 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static int	bench_not_found(char **argv, char **result, int count)
 {
@@ -52,10 +51,30 @@ static int	flag_count(int argc, char **argv)
 		index++;
 	}
 	if (find_flag(argv[count], result) < 0 && count > 0)
-		return (-1);
+		return (free_flag(result), -1);
 	if (bench_not_found(argv, result, count))
-		return (-1);
+		return (free_flag(result), -1);
+	free_flag(result);
 	return (count);
+}
+
+void	main_helper(t_count *counters, t_snode *stack_a,
+		t_snode *stack_b, t_op *operations)
+{
+	if (!disorder_selecter(counters, &stack_a, &stack_b, operations))
+		adapter(&stack_a, &stack_b, counters, operations);
+	if (counters->bench_count > 0)
+	{
+		while (counters->bench_count > 0)
+		{
+			benchmark(counters->arg, counters, operations);
+			counters->bench_count--;
+		}
+	}
+	free_stack(&stack_a);
+	free_stack(&stack_b);
+	free(counters);
+	free(operations);
 }
 
 int	main(int argc, char **argv)
@@ -75,30 +94,14 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	counters->counter = flag_count(argc, argv);
-	if (argc == 1)
-		return (ft_printf_str("No arguments\n"), 0);
-	if (counters->counter > 2 || counters->counter == -1)
-		return (ft_printf_str("Error(flag overload)\n"), -1);
+	if (argc == 1 || counters->counter > 2 || counters->counter == -1)
+		return (ft_printf_str("Error\n"), -1);
 	parser(argc, argv, &stack_a, &counters->counter);
-	if (argc - counters->counter - 1 == 1)
-		return (0);
+	if (argc - counters->counter - 1 == 0)
+		return (ft_printf_str("Error\n") ,0);
 	counters->disorder = compute_disorder(stack_a, argc - counters->counter);
 	if (counters->disorder == 0.0)
 		return (0);
-	if(!disorder_selecter(counters, &stack_a, &stack_b, operations))
-		adapter(&stack_a, &stack_b, counters, operations);
-	//Test if stack_a was sorted successfully
-	while (stack_a)
-	{
-		printf("%d\n", stack_a->value);
-		stack_a = stack_a->next;
-	}
-	if (counters->bench_count > 0)
-	{
-		while (counters->bench_count > 0)
-		{
-			benchmark(argv, counters, operations);
-			counters->bench_count--;
-		}
-	}
+	main_helper(counters, stack_a, stack_b, operations);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:00:26 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/18 17:50:41 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/24 20:23:32 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ void	push_node(t_snode **stack, t_snode *node)
 	if (*stack)
 		(*stack)->prev = node;
 	*stack = node;
-	ft_printf_str("Pushed ");
-	ft_printf_decimal(node->value);
-	ft_printf_str(" onto the stack!\n");
 }
 
 t_snode	*pop_node(t_snode **stack)

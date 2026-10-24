@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 16:12:37 by yal-sale          #+#    #+#             */
-/*   Updated: 2026/10/14 20:08:19 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/24 18:20:22 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,25 @@ static int	rotate(t_snode **stack)
 	return (1);
 }
 
-void	do_ra(t_snode **st_a)
+void	do_ra(t_snode **st_a, t_op *operation)
 {
 	if (rotate(st_a))
+	{
 		write(1, "ra\n", 3);
+		operation->counters[5]++;
+	}
 }
 
-void	do_rb(t_snode **st_b)
+void	do_rb(t_snode **st_b, t_op *operation)
 {
 	if (rotate(st_b))
+	{
 		write(1, "rb\n", 3);
+		operation->counters[6]++;
+	}
 }
 
-void	do_rr(t_snode **st_a, t_snode **st_b)
+void	do_rr(t_snode **st_a, t_snode **st_b, t_op *operation)
 {
 	int	rotated_a;
 	int	rotated_b;
@@ -49,5 +55,8 @@ void	do_rr(t_snode **st_a, t_snode **st_b)
 	rotated_a = rotate(st_a);
 	rotated_b = rotate(st_b);
 	if (rotated_a || rotated_b)
+	{
 		write(1, "rr\n", 3);
+		operation->counters[7]++;
+	}
 }

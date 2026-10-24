@@ -6,7 +6,7 @@
 /*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 17:00:00 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/23 17:00:00 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/24 20:49:36 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int	disorder_selecter(t_count *counters, t_snode **stack_a,
 		}
 		index++;
 	}
+	free_flag(res);
 	return (flags_only(counters, bench));
 }
