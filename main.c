@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/24 21:03:45 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/25 11:54:09 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ static void	main_helper(t_count *counters, t_snode *stack_a,
 		t_op *operations)
 {
 	t_snode	*stack_b;
+	int		index;
 
+	index = 0;
 	stack_b = NULL;
 	if (stack_a)
 	{
@@ -72,7 +74,13 @@ static void	main_helper(t_count *counters, t_snode *stack_a,
 			&& counters->disorder != 0.0f)
 			adapter(&stack_a, &stack_b, counters, operations);
 		if (counters->bench_count > 0)
-			benchmark(counters->arg, counters, operations);
+		{
+			while (index < counters->bench_count)
+			{
+				benchmark(counters->arg, counters, operations);
+				index++;
+			}
+		}
 	}
 	free_stack(&stack_a);
 	free_stack(&stack_b);

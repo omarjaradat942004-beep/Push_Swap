@@ -68,6 +68,7 @@ With `--bench`, the following is printed on **stderr** after sorting (the operat
 - the name of the strategy used and its complexity class;
 - the total number of operations;
 - the count of each operation type.
+- you can use the bench flag twice for ex : ./a.out --bench --bench $ARG
 
 ### Examples
 
