@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/24 20:41:15 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/26 11:49:53 by omajarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ char	**flag_split(void);
 int		find_flag(char *arg, char **flags);
 int		disorder_selecter(t_count *counters, t_snode **stack_a,
 			t_snode **stack_b, t_op *operation);
+t_snode	*small_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
 
 #endif

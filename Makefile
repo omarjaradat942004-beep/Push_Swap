@@ -29,7 +29,8 @@ SRCS = ft_atoi.c \
        argv.c \
        stack_sizepos.c \
        disorder_select.c \
-	   free_flag.c
+	free_flag.c \
+	small_sort.c
 
 
 
