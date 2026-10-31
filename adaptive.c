@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 18:54:59 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/26 11:50:56 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/28 01:14:42 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	adapter(t_snode **stack_a, t_snode **stack_b, t_count *counters,
 	index = 0;
 	while (counters->arg[index])
 		index++;
-	if (index - counters->counter - 1 == 5
-		|| (index - counters->counter - 1) == 3)
+	if (index - counters->counter - 1 <= 5)
 		small_sort(stack_a, stack_b, operation);
 	else if (counters->disorder < 0.2)
 		selection_sort(stack_a, stack_b, operation);

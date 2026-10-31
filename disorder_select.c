@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disorder_select.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omajarad <omajarad@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 17:00:00 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/24 20:49:36 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/27 22:11:18 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	find_flag(char *arg, char **flags)
 	int	index;
 
 	index = 0;
-	while (index < 5)
+	while (flags[index])
 	{
 		if (ft_strncmp(arg, flags[index], ft_strlen(flags[index]) + 1) == 0)
 			return (index);
@@ -39,20 +39,30 @@ static void	run_sort(int flag, t_snode **stack_a, t_snode **stack_b,
 
 static int	skip_sorted(int flag, t_count *counters)
 {
-	if (counters->disorder == 0.0f && flag != 4)
+	if (counters->disorder == 0.0f && flag < 4)
 		return (-1);
 	return (flag);
 }
 
-static int	flags_only(t_count *counters, int bench)
+static int	flags_only(t_count *counters, char **res, t_op *operation)
 {
-	if (counters->counter == 0)
-		return (0);
-	if (bench == 2 && counters->counter == 2)
-		return (0);
-	if (bench == 1 && counters->counter == 1)
-		return (0);
-	return (1);
+	int	index;
+	int	flag;
+	int	mods;
+
+	index = 1;
+	mods = 0;
+	operation->print_control = 1;
+	while (index <= counters->counter)
+	{
+		flag = find_flag(counters->arg[index], res);
+		if (flag == 4)
+			counters->bench_count++;
+		if (flag >= 4)
+			mods++;
+		index++;
+	}
+	return (mods != counters->counter);
 }
 
 int	disorder_selecter(t_count *counters, t_snode **stack_a,
@@ -60,11 +70,11 @@ int	disorder_selecter(t_count *counters, t_snode **stack_a,
 {
 	int		index;
 	int		flag;
-	int		bench;
+	int		has_strat;
 	char	**res;
 
-	bench = 0;
 	res = flag_split();
+	has_strat = flags_only(counters, res, operation);
 	index = 1;
 	while (index <= counters->counter)
 	{
@@ -73,13 +83,8 @@ int	disorder_selecter(t_count *counters, t_snode **stack_a,
 			run_sort(flag, stack_a, stack_b, operation);
 		else if (flag == 3)
 			adapter(stack_a, stack_b, counters, operation);
-		else if (flag == 4)
-		{
-			counters->bench_count++;
-			bench++;
-		}
 		index++;
 	}
 	free_flag(res);
-	return (flags_only(counters, bench));
+	return (has_strat);
 }

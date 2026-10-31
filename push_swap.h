@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 14:03:45 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/26 11:49:53 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/27 20:34:02 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_snode
 typedef struct s_op
 {
 	int	counters[11];
+	int	print_control;
 }	t_op;
 
 /*---------------counter/bench Structure--------------*/
@@ -98,5 +99,5 @@ int		find_flag(char *arg, char **flags);
 int		disorder_selecter(t_count *counters, t_snode **stack_a,
 			t_snode **stack_b, t_op *operation);
 t_snode	*small_sort(t_snode **stack_a, t_snode **stack_b, t_op *operation);
-
+int		get_total_op(t_op *operation);
 #endif

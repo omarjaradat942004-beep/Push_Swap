@@ -4,8 +4,8 @@
 
 ## Description
 
-**push_swap** sorts a list of unique integers using two stacks, `a` and `b`, and a limited set of operations. The program does not sort the numbers directly: it prints, on the standard output, a sequence of operations (one per line) that, when applied to stack `a`, leaves it sorted in ascending order with the smallest number on top. The goal is to discover algorithmic complexity in a concrete way: the cost of an algorithm is measured in the **number of push_swap operations generated**, not in CPU time.
-
+**push_swap** sorts a list of unique integers using two stacks, `a` and `b`, and a limited set of operations. The program does not sort the numbers directly: it prints, on the standard output, a sequence of operations (one per line) that, when applied to stack `a`, leaves it sorted in ascending order with the smallest number on top. The goal is to discover algorithmic complexity in a concrete way: the cost of an algorithm is measured in the **number of push_swap operations generated**, not in CPU time the program is also adaptive to handle extra flags such as --count-only etc .
+ 
 The operations available are:
 
 | Operation | Effect |

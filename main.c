@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 13:28:20 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/25 11:54:09 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/27 22:08:54 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static int	bench_not_found(char **argv, char **result, int count)
 {
 	if (count != 2)
 		return (0);
-	if (find_flag(argv[1], result) == 4)
+	if (find_flag(argv[1], result) >= 4)
 		return (0);
-	if (find_flag(argv[2], result) == 4)
+	if (find_flag(argv[2], result) >= 4)
 		return (0);
 	return (1);
 }
@@ -73,13 +73,10 @@ static void	main_helper(t_count *counters, t_snode *stack_a,
 		if (!disorder_selecter(counters, &stack_a, &stack_b, operations)
 			&& counters->disorder != 0.0f)
 			adapter(&stack_a, &stack_b, counters, operations);
-		if (counters->bench_count > 0)
+		while (index < counters->bench_count)
 		{
-			while (index < counters->bench_count)
-			{
-				benchmark(counters->arg, counters, operations);
-				index++;
-			}
+			benchmark(counters->arg, counters, operations);
+			index++;
 		}
 	}
 	free_stack(&stack_a);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omajarad <omar.jaradat1@learner.42.tech>   +#+  +:+       +#+        */
+/*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 14:50:10 by omajarad          #+#    #+#             */
-/*   Updated: 2026/10/24 17:07:05 by omajarad         ###   ########.fr       */
+/*   Updated: 2026/10/27 20:39:22 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,7 @@ void	print_op(t_op *operation)
 	char	**res;
 
 	index = 0;
-	total = 0;
-	while (index < 11)
-		total += operation->counters[index++];
+	total = get_total_op(operation);
 	ft_printf_str_2("[bench] total_ops: ");
 	ft_printf_decimal_2(total);
 	ft_printf_str_2("\n");

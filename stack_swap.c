@@ -6,7 +6,7 @@
 /*   By: yal-sale <yal-sale@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 14:13:35 by yal-sale          #+#    #+#             */
-/*   Updated: 2026/10/24 18:21:03 by yal-sale         ###   ########.fr       */
+/*   Updated: 2026/10/27 21:00:34 by yal-sale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	do_sa(t_snode **st_a, t_op *operation)
 {
 	if (swap(st_a))
 	{
-		write(1, "sa\n", 3);
+		if (operation->print_control == 1)
+			write(1, "sa\n", 3);
 		operation->counters[0]++;
 	}
 }
@@ -44,7 +45,8 @@ void	do_sb(t_snode **st_b, t_op *operation)
 {
 	if (swap(st_b))
 	{
-		write(1, "sb\n", 3);
+		if (operation->print_control == 1)
+			write(1, "sb\n", 3);
 		operation->counters[1]++;
 	}
 }
@@ -58,7 +60,8 @@ void	do_ss(t_snode **st_a, t_snode **st_b, t_op *operation)
 	swapped_b = swap(st_b);
 	if (swapped_a || swapped_b)
 	{
-		write(1, "ss\n", 3);
+		if (operation->print_control == 1)
+			write(1, "ss\n", 3);
 		operation->counters[2]++;
 	}
 }
