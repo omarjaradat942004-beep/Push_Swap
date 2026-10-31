@@ -15,6 +15,7 @@ The operations available are:
 | `ra` / `rb` / `rr` | rotate `a` / `b` / both (first element becomes last) |
 | `rra` / `rrb` / `rrr` | reverse rotate `a` / `b` / both (last element becomes first) |
 
+
 The binary embeds **four strategies**, selectable at runtime:
 
 | Selector | Strategy | Complexity (in operations) |
