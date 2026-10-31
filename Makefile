@@ -1,4 +1,4 @@
-NAME = push_swap.a
+NAME = push_swap
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -30,7 +30,8 @@ SRCS = ft_atoi.c \
        stack_sizepos.c \
        disorder_select.c \
 	free_flag.c \
-	small_sort.c
+	small_sort.c \
+	main.c
 
 
 
@@ -39,7 +40,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
